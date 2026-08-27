@@ -497,7 +497,6 @@ button {
   font-size: clamp(0.82rem, 1.2vw, 1.18rem);
   letter-spacing: 0;
   margin: 0 0 0.65rem;
-  text-transform: uppercase;
 }
 
 .hero-copy h1 {
