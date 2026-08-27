@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 
-const projects = ["Identity", "Digital", "Motion", "Spatial"];
+const headline = "unexpected";
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +40,7 @@ export default function Home() {
 
       <div className="cursor-ring" aria-hidden="true" />
       <div className="cursor-dot" aria-hidden="true" />
+      <div className="cursor-aura" aria-hidden="true" />
 
       <section className="hero" aria-label="Asqaure Design agency home">
         <div className="hero-image" aria-hidden="true" />
@@ -48,7 +49,6 @@ export default function Home() {
         <div className="grain" aria-hidden="true" />
 
         <div className="orb orb-large" aria-hidden="true" />
-        <div className="orb orb-small" aria-hidden="true" />
         <div className="particle-field" aria-hidden="true">
           {Array.from({ length: 22 }).map((_, index) => (
             <span
@@ -73,8 +73,8 @@ export default function Home() {
             <sup>®</sup>
           </a>
           <nav className="nav" aria-label="Primary navigation">
-            <a href="#index">Index</a>
             <a href="#projects">Projects</a>
+            <a href="#team">Team</a>
             <a href="#contact">Contact</a>
             <button
               className="menu-dot"
@@ -96,9 +96,27 @@ export default function Home() {
 
         <div className="hero-copy">
           <p>branding,socialmedia,webdesign</p>
-          <h1>
-            <span>Creating the</span>
-            unexpected
+          <h1 aria-label="Creating the unexpected">
+            <span className="script-line" aria-hidden="true">
+              {"Creating the".split("").map((letter, index) => (
+                <span
+                  key={`${letter}-${index}`}
+                  style={{ "--letter-index": index } as CSSProperties}
+                >
+                  {letter === " " ? "\u00a0" : letter}
+                </span>
+              ))}
+            </span>
+            <span className="headline-word" aria-hidden="true">
+              {headline.split("").map((letter, index) => (
+                <span
+                  key={`${letter}-${index}`}
+                  style={{ "--letter-index": index } as CSSProperties}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
           </h1>
           <a className="work-button magnetic" href="#projects">
             <span className="button-fill" aria-hidden="true" />
@@ -108,28 +126,7 @@ export default function Home() {
           </a>
         </div>
 
-        <aside className="project-strip" id="projects" aria-label="Studio disciplines">
-          {projects.map((project) => (
-            <span key={project}>{project}</span>
-          ))}
-        </aside>
-
         <footer className="bottom-controls">
-          <button className="pill dark-pill" aria-label="Open sound settings">
-            <span className="sound-bars" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-          </button>
-          <a className="pill outline-pill" href="#index">
-            Our 2026 Wrapped
-          </a>
-          <button className="globe" aria-label="Change language">
-            <span aria-hidden="true">◎</span>
-          </button>
           <span className="year">©2026</span>
         </footer>
       </section>
