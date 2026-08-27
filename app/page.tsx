@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LiveBackgroundCanvas } from "./components/LiveBackgroundCanvas";
 
@@ -12,45 +11,11 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"hero" | "projects" | "review" | "pricing" | "contact">("hero");
   const [contactType, setContactType] = useState<"email" | "whatsapp">("email");
   const [copied, setCopied] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
 
-  const ringRef = useRef<HTMLDivElement | null>(null);
-  const dotRef = useRef<HTMLDivElement | null>(null);
   const heroImageRef = useRef<HTMLDivElement | null>(null);
-
-  // Hide navbar on scroll down, show on scroll up instantly
-  useEffect(() => {
-    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-
-          if (currentScrollY <= 60) {
-            setNavVisible(true);
-          } else if (currentScrollY > lastScrollY + 4 && currentScrollY > 80) {
-            setNavVisible(false);
-          } else if (currentScrollY < lastScrollY - 3) {
-            setNavVisible(true);
-          }
-
-          lastScrollY = Math.max(0, currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Sync hash changes
   useEffect(() => {
-    console.log("hero animation mounted");
-
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash === "#projects") {
@@ -70,14 +35,11 @@ export default function Home() {
     window.addEventListener("hashchange", handleHashChange);
 
     const timer = window.setTimeout(() => setLoaded(true), 1700);
+    const canUseHeroParallax = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     let animationFrameId: number;
     let targetX = typeof window !== "undefined" ? window.innerWidth / 2 : 0;
     let targetY = typeof window !== "undefined" ? window.innerHeight / 2 : 0;
-    let currentX = targetX;
-    let currentY = targetY;
-    let dotX = targetX;
-    let dotY = targetY;
 
     const moveCursor = (event: PointerEvent) => {
       targetX = event.clientX;
@@ -85,18 +47,6 @@ export default function Home() {
     };
 
     const updatePosition = () => {
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-      dotX += (targetX - dotX) * 0.45;
-      dotY += (targetY - dotY) * 0.45;
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-      }
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
-      }
-
       if (heroImageRef.current) {
         const tiltX = (targetX / window.innerWidth - 0.5) * 6;
         const tiltY = (targetY / window.innerHeight - 0.5) * -4;
@@ -106,12 +56,14 @@ export default function Home() {
       animationFrameId = requestAnimationFrame(updatePosition);
     };
 
-    window.addEventListener("pointermove", moveCursor);
-    animationFrameId = requestAnimationFrame(updatePosition);
+    if (canUseHeroParallax) {
+      window.addEventListener("pointermove", moveCursor);
+      animationFrameId = requestAnimationFrame(updatePosition);
+    }
 
     return () => {
       window.clearTimeout(timer);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener("pointermove", moveCursor);
       window.removeEventListener("hashchange", handleHashChange);
     };
@@ -160,6 +112,18 @@ export default function Home() {
       {/* Subtle Grain Overlay */}
       <div className="grain" aria-hidden="true" />
 
+      {/* Lightweight flying detail layer */}
+      <div className="flying-birds-layer" aria-hidden="true">
+        {["bird-1", "bird-2", "bird-3"].map((bird) => (
+          <span className={`bird ${bird}`} key={bird}>
+            <svg viewBox="0 0 50 30" className="bird-svg">
+              <path className="wing left-wing" d="M25,15 Q12,2 2,12 Q15,14 25,15 Z" />
+              <path className="wing right-wing" d="M25,15 Q38,2 48,12 Q35,14 25,15 Z" />
+            </svg>
+          </span>
+        ))}
+      </div>
+
       {/* Intro Loader */}
       <div className="intro" aria-hidden={loaded}>
         <div className="intro-cube" aria-hidden="true">
@@ -171,38 +135,6 @@ export default function Home() {
         <small>Branding, social media and web design for memorable systems.</small>
       </div>
 
-      {/* Hardware-Accelerated Custom Cursor */}
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
-      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
-
-      {/* Live Flying Birds Layer */}
-      <div className="flying-birds-layer" aria-hidden="true">
-        <div className="bird bird-1">
-          <svg viewBox="0 0 50 30" className="bird-svg">
-            <path className="wing left-wing" d="M25,15 Q12,2 2,12 Q15,14 25,15 Z" />
-            <path className="wing right-wing" d="M25,15 Q38,2 48,12 Q35,14 25,15 Z" />
-          </svg>
-        </div>
-        <div className="bird bird-2">
-          <svg viewBox="0 0 50 30" className="bird-svg">
-            <path className="wing left-wing" d="M25,15 Q12,2 2,12 Q15,14 25,15 Z" />
-            <path className="wing right-wing" d="M25,15 Q38,2 48,12 Q35,14 25,15 Z" />
-          </svg>
-        </div>
-        <div className="bird bird-3">
-          <svg viewBox="0 0 50 30" className="bird-svg">
-            <path className="wing left-wing" d="M25,15 Q12,2 2,12 Q15,14 25,15 Z" />
-            <path className="wing right-wing" d="M25,15 Q38,2 48,12 Q35,14 25,15 Z" />
-          </svg>
-        </div>
-        <div className="bird bird-4">
-          <svg viewBox="0 0 50 30" className="bird-svg">
-            <path className="wing left-wing" d="M25,15 Q12,2 2,12 Q15,14 25,15 Z" />
-            <path className="wing right-wing" d="M25,15 Q38,2 48,12 Q35,14 25,15 Z" />
-          </svg>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="hero" aria-label="Shaurya Sharma portfolio home">
         
@@ -210,7 +142,7 @@ export default function Home() {
         <motion.div
           className="rooms-slider"
           animate={{ x: getSliderX() }}
-          transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
           style={{ willChange: "transform" }}
         >
           {/* Room 1: Main Hero Architectural Room */}
@@ -268,11 +200,11 @@ export default function Home() {
 
         <div className="light-sweep" aria-hidden="true" />
 
-        {/* Header Navigation (Auto-hides on scroll down) */}
-        <header className={`topbar ${navVisible ? "" : "is-hidden"}`}>
+        {/* Header Navigation */}
+        <header className="topbar">
           <a
             className="brand"
-            href="#"
+            href="#home"
             onClick={(e) => {
               e.preventDefault();
               window.location.hash = "";
@@ -286,7 +218,7 @@ export default function Home() {
           </a>
           <nav className="nav" aria-label="Primary navigation">
             <a
-              href="#"
+              href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 window.location.hash = "";

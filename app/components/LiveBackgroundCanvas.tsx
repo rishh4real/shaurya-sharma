@@ -13,6 +13,9 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const shouldAnimateCanvas = window.matchMedia("(min-width: 761px) and (prefers-reduced-motion: no-preference)").matches;
+    if (!shouldAnimateCanvas) return;
+
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
@@ -98,7 +101,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
     };
 
     const initParticles = (w: number, h: number) => {
-      const count = Math.min(Math.floor((w * h) / 30000), 35);
+      const count = Math.min(Math.floor((w * h) / 85000), 18);
       particles = [];
       for (let i = 0; i < count; i++) {
         particles.push({
@@ -114,7 +117,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
     };
 
     const handleResize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       width = window.innerWidth;
       height = window.innerHeight;
 
@@ -123,7 +126,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
 
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       initOrbs(width, height);
       initParticles(width, height);
@@ -161,11 +164,18 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
     window.addEventListener("pointerdown", handlePointerDown);
     window.addEventListener("pointerup", handlePointerUp);
 
-    let time = 0;
+    let lastFrame = 0;
 
-    const render = () => {
-      time += 0.016;
-
+    const render = (now = 0) => {
+      if (document.hidden) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      if (now - lastFrame < 33) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      lastFrame = now;
       mouse.x += (mouse.targetX - mouse.x) * 0.12;
       mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
@@ -268,7 +278,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
