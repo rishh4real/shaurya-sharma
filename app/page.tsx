@@ -280,23 +280,9 @@ export default function Home() {
             }}
             aria-label="Shaurya Sharma home"
           >
-            <div className="brand-logo-container">
-              <svg className="brand-logo-svg" viewBox="0 0 100 100">
-                <defs>
-                  <linearGradient id="rose-gold-brand" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f43f5e" />
-                    <stop offset="50%" stopColor="#fb7185" />
-                    <stop offset="100%" stopColor="#fda4af" />
-                  </linearGradient>
-                </defs>
-                <circle cx="50" cy="50" r="34" fill="none" stroke="url(#rose-gold-brand)" strokeWidth="3.5" strokeDasharray="150 50" strokeLinecap="round" />
-                <path d="M62,33 C62,33 56,27 48,27 C38,27 34,33 34,40 C34,48 44,50 52,52 C62,55 66,60 66,68 C66,77 58,82 48,82 C38,82 32,75 32,75" fill="none" stroke="url(#rose-gold-brand)" strokeWidth="7" strokeLinecap="round" />
-                <circle cx="62" cy="33" r="4" fill="#ffffff" />
-              </svg>
-            </div>
-            <span className="brand-name">shaurya</span>
-            <span className="brand-name font-italic">sharma</span>
-            <sup className="brand-reg">®</sup>
+            <span>shaurya</span>
+            <span>sharma</span>
+            <sup>®</sup>
           </a>
           <nav className="nav" aria-label="Primary navigation">
             <a
