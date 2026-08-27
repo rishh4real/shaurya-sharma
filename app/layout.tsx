@@ -13,20 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Asqaure Design - Brand, Digital & Motion Studio",
+  title: "Asqaure Design - Branding, Social Media & Web Design",
   description:
-    "Asqaure Design is a brand, digital and motion studio creating cinematic identities and unexpected digital experiences.",
+    "Asqaure Design creates branding, social media and web design with cinematic digital experiences.",
   openGraph: {
     title: "Asqaure Design",
     description:
-      "A brand, digital and motion studio creating cinematic identities and unexpected digital experiences.",
+      "Branding, social media and web design with cinematic digital experiences.",
     images: ["/asqaure-hero.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Asqaure Design",
     description:
-      "A brand, digital and motion studio creating cinematic identities and unexpected digital experiences.",
+      "Branding, social media and web design with cinematic digital experiences.",
     images: ["/asqaure-hero.png"],
   },
   icons: {

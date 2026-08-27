@@ -35,10 +35,11 @@ export default function Home() {
           ))}
         </div>
         <p>asqaure design</p>
-        <small>A brand, digital and motion studio creating memorable design systems.</small>
+        <small>Branding, social media and web design for memorable systems.</small>
       </div>
 
       <div className="cursor-ring" aria-hidden="true" />
+      <div className="cursor-dot" aria-hidden="true" />
 
       <section className="hero" aria-label="Asqaure Design agency home">
         <div className="hero-image" aria-hidden="true" />
@@ -67,7 +68,9 @@ export default function Home() {
 
         <header className="topbar">
           <a className="brand" href="#" aria-label="Asqaure Design home">
-            asqaure<span>design</span><sup>®</sup>
+            <span>asqaure</span>
+            <span>design</span>
+            <sup>®</sup>
           </a>
           <nav className="nav" aria-label="Primary navigation">
             <a href="#index">Index</a>
@@ -92,13 +95,16 @@ export default function Home() {
         </div>
 
         <div className="hero-copy">
-          <p>A brand, digital & motion studio</p>
+          <p>branding,socialmedia,webdesign</p>
           <h1>
             <span>Creating the</span>
             unexpected
           </h1>
-          <a className="work-button" href="#projects">
-            View our work <span aria-hidden="true">↘</span>
+          <a className="work-button magnetic" href="#projects">
+            <span className="button-fill" aria-hidden="true" />
+            <span className="button-label">
+              View our work <span aria-hidden="true">↘</span>
+            </span>
           </a>
         </div>
 
@@ -110,7 +116,13 @@ export default function Home() {
 
         <footer className="bottom-controls">
           <button className="pill dark-pill" aria-label="Open sound settings">
-            <span aria-hidden="true">•••••</span>
+            <span className="sound-bars" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </span>
           </button>
           <a className="pill outline-pill" href="#index">
             Our 2026 Wrapped
