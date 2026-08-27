@@ -13,25 +13,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Asqaure Design - Branding, Social Media & Web Design",
+  title: "Shaurya Sharma - Web Design, AI Automations & Strategy",
   description:
-    "Asqaure Design creates branding, social media and web design with cinematic digital experiences.",
+    "Shaurya Sharma - Web Design, AI Automations & Strategy Maker.",
   openGraph: {
-    title: "Asqaure Design",
+    title: "Shaurya Sharma",
     description:
-      "Branding, social media and web design with cinematic digital experiences.",
+      "Web Design, AI Automations & Strategy Maker.",
     images: ["/asqaure-hero.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asqaure Design",
+    title: "Shaurya Sharma",
     description:
-      "Branding, social media and web design with cinematic digital experiences.",
+      "Web Design, AI Automations & Strategy Maker.",
     images: ["/asqaure-hero.png"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
