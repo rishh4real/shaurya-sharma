@@ -7,7 +7,6 @@ const headline = "unexpected";
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoaded(true), 1700);
@@ -76,23 +75,8 @@ export default function Home() {
             <a href="#projects">Projects</a>
             <a href="#team">Team</a>
             <a href="#contact">Contact</a>
-            <button
-              className="menu-dot"
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((open) => !open)}
-            >
-              <span />
-              <span />
-            </button>
           </nav>
         </header>
-
-        <div className={`menu-panel ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
-          <a href="#studio">Studio</a>
-          <a href="#services">Services</a>
-          <a href="#journal">Journal</a>
-        </div>
 
         <div className="hero-copy">
           <p>branding,socialmedia,webdesign</p>

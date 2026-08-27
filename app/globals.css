@@ -238,6 +238,40 @@ button {
   z-index: -5;
 }
 
+.hero-image::before,
+.hero-image::after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.hero-image::before {
+  animation: waterPan 5.8s linear infinite;
+  background:
+    repeating-linear-gradient(184deg, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(92deg, rgba(126, 151, 207, 0.16) 0 2px, transparent 2px 24px);
+  filter: blur(0.8px);
+  height: 42%;
+  mix-blend-mode: overlay;
+  opacity: 0.72;
+  transform: translate3d(0, 0, 0) skewY(-1deg);
+}
+
+.hero-image::after {
+  animation: causticFlow 7.4s ease-in-out infinite alternate;
+  background:
+    radial-gradient(ellipse at 24% 42%, rgba(255, 255, 255, 0.26), transparent 34%),
+    radial-gradient(ellipse at 68% 58%, rgba(169, 196, 255, 0.2), transparent 32%),
+    linear-gradient(90deg, transparent, rgba(255, 238, 207, 0.18), transparent);
+  filter: blur(5px);
+  height: 48%;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
 .hero::after {
   animation: chroma 7s ease-in-out infinite alternate;
   background:
@@ -313,14 +347,26 @@ button {
 
 .grain {
   background-image:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.03), transparent 34%),
-    repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 7px);
+    repeating-radial-gradient(circle at 12% 18%, rgba(28, 24, 28, 0.12) 0 0.6px, transparent 0.7px 2.8px),
+    repeating-radial-gradient(circle at 72% 62%, rgba(255, 255, 255, 0.13) 0 0.7px, transparent 0.8px 3.2px),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.05), transparent 34%);
   inset: 0;
-  mix-blend-mode: soft-light;
-  opacity: 0.22;
+  mix-blend-mode: overlay;
+  opacity: 0.34;
   pointer-events: none;
   position: absolute;
   z-index: 3;
+}
+
+.grain::after {
+  animation: grainCrawl 1.8s steps(2, end) infinite;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.09) 0 8deg, rgba(0, 0, 0, 0.08) 8deg 16deg, transparent 16deg 28deg);
+  content: "";
+  inset: -18%;
+  opacity: 0.11;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
 }
 
 .orb {
@@ -403,6 +449,7 @@ button {
   align-items: center;
   display: flex;
   gap: clamp(1rem, 2vw, 2rem);
+  margin-right: clamp(2.4rem, 5vw, 5.5rem);
 }
 
 .nav a {
@@ -423,77 +470,6 @@ button {
 .nav a:hover {
   opacity: 0.68;
   transform: translateY(-1px);
-}
-
-.menu-dot {
-  align-items: center;
-  animation: menuPop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 2.02s both;
-  background: rgba(255, 255, 255, 0.95);
-  border: 0;
-  border-radius: 50%;
-  display: inline-flex;
-  gap: 0.32rem;
-  height: clamp(3.1rem, 4.2vw, 4.6rem);
-  justify-content: center;
-  padding: 0;
-  position: relative;
-  transition: transform 220ms ease, background 220ms ease;
-  width: clamp(3.1rem, 4.2vw, 4.6rem);
-}
-
-.menu-dot:hover,
-.menu-dot[aria-expanded="true"] {
-  background: #161616;
-  transform: scale(0.94);
-}
-
-.menu-dot span {
-  background: #171717;
-  border-radius: 50%;
-  height: 0.34rem;
-  width: 0.34rem;
-}
-
-.menu-dot:hover span,
-.menu-dot[aria-expanded="true"] span {
-  background: #fff;
-}
-
-.menu-panel {
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 8px;
-  display: grid;
-  gap: 0.8rem;
-  opacity: 0;
-  padding: 1rem 1.15rem;
-  pointer-events: none;
-  position: fixed;
-  right: 2.4rem;
-  top: 7.4rem;
-  transform: translateY(-0.7rem);
-  transition: opacity 220ms ease, transform 220ms ease;
-  z-index: 9;
-}
-
-.menu-panel.is-open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.menu-panel a {
-  animation: panelLink 360ms ease both;
-  font-size: 0.95rem;
-  text-decoration: none;
-}
-
-.menu-panel a:nth-child(2) {
-  animation-delay: 60ms;
-}
-
-.menu-panel a:nth-child(3) {
-  animation-delay: 120ms;
 }
 
 .hero-copy {
@@ -520,6 +496,20 @@ button {
   position: relative;
 }
 
+.hero-copy h1::before {
+  animation: headlineLight 7.6s cubic-bezier(0.45, 0, 0.22, 1) infinite;
+  background: linear-gradient(100deg, transparent 12%, rgba(255, 255, 255, 0.38) 38%, rgba(170, 194, 255, 0.24) 45%, rgba(255, 216, 190, 0.26) 52%, transparent 72%);
+  content: "";
+  filter: blur(7px);
+  inset: -0.08em -0.16em;
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-72%) skewX(-8deg);
+  z-index: 1;
+}
+
 .hero-copy h1::after {
   animation: titleGhost 5s ease-in-out infinite;
   color: rgba(134, 164, 255, 0.32);
@@ -539,6 +529,8 @@ button {
 }
 
 .script-line {
+  animation: textShine 8.8s ease-in-out infinite;
+  color: #171717;
   display: block;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.72em;
@@ -552,10 +544,15 @@ button {
   animation: scriptWave 3.8s ease-in-out infinite;
   animation-delay: calc(var(--letter-index) * 65ms);
   display: inline-block;
+  text-shadow:
+    0.012em 0 rgba(115, 148, 226, 0.16),
+    -0.01em 0 rgba(255, 202, 181, 0.18);
   transform-origin: 50% 80%;
 }
 
 .headline-word {
+  animation: textShine 8.8s ease-in-out 180ms infinite;
+  color: #121212;
   display: block;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 1em;
@@ -571,8 +568,9 @@ button {
   animation-delay: calc(var(--letter-index) * 58ms);
   display: inline-block;
   text-shadow:
-    0.014em 0 rgba(151, 190, 255, 0.18),
-    -0.012em 0 rgba(255, 220, 177, 0.2);
+    0.016em 0 rgba(115, 148, 226, 0.22),
+    -0.014em 0 rgba(255, 202, 181, 0.24),
+    0 0.018em rgba(18, 18, 18, 0.12);
   transform-origin: 50% 72%;
 }
 
@@ -676,6 +674,32 @@ button {
   }
 }
 
+@keyframes waterPan {
+  0% {
+    background-position: 0 0, 0 0;
+    transform: translate3d(-1.2rem, 0, 0) skewY(-1deg);
+  }
+  50% {
+    background-position: 3rem 1.1rem, -2rem 0.6rem;
+    transform: translate3d(1.2rem, 0.45rem, 0) skewY(0.7deg);
+  }
+  100% {
+    background-position: 6rem 2.2rem, -4rem 1.2rem;
+    transform: translate3d(-1.2rem, 0, 0) skewY(-1deg);
+  }
+}
+
+@keyframes causticFlow {
+  from {
+    opacity: 0.36;
+    transform: translate3d(-3%, 2%, 0) scale(1.04);
+  }
+  to {
+    opacity: 0.7;
+    transform: translate3d(3%, -1%, 0) scale(1.08);
+  }
+}
+
 @keyframes shadowSweep {
   from {
     opacity: 0.65;
@@ -728,6 +752,24 @@ button {
   }
 }
 
+@keyframes grainCrawl {
+  0% {
+    transform: translate3d(-2%, 1%, 0) rotate(0.2deg);
+  }
+  25% {
+    transform: translate3d(1%, -1%, 0) rotate(-0.1deg);
+  }
+  50% {
+    transform: translate3d(2%, 2%, 0) rotate(0.15deg);
+  }
+  75% {
+    transform: translate3d(-1%, -2%, 0) rotate(-0.2deg);
+  }
+  100% {
+    transform: translate3d(-2%, 1%, 0) rotate(0.2deg);
+  }
+}
+
 @keyframes loaderWipe {
   0% {
     height: 0;
@@ -735,6 +777,33 @@ button {
   58%,
   100% {
     height: 100%;
+  }
+}
+
+@keyframes headlineLight {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateX(-72%) skewX(-8deg);
+  }
+  48% {
+    opacity: 0.68;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateX(72%) skewX(-8deg);
+  }
+}
+
+@keyframes textShine {
+  0%,
+  26% {
+    background-position: 120% 50%;
+  }
+  70%,
+  100% {
+    background-position: -90% 50%;
   }
 }
 
@@ -812,28 +881,6 @@ button {
   from {
     opacity: 0;
     transform: translateY(-0.6rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes menuPop {
-  from {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes panelLink {
-  from {
-    opacity: 0;
-    transform: translateY(0.4rem);
   }
   to {
     opacity: 1;
@@ -925,20 +972,11 @@ button {
 
   .nav {
     gap: 0.55rem;
+    margin-right: 0;
   }
 
   .nav a {
     display: none;
-  }
-
-  .menu-dot {
-    height: 3.2rem;
-    width: 3.2rem;
-  }
-
-  .menu-panel {
-    right: 1.15rem;
-    top: 5.3rem;
   }
 
   .hero-copy {
