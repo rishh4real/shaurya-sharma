@@ -8,6 +8,7 @@ const headline = "unexpected";
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const [activeTab, setActiveTab] = useState<"hero" | "projects" | "review" | "pricing" | "contact">("hero");
   const [contactType, setContactType] = useState<"email" | "whatsapp">("email");
   const [copied, setCopied] = useState(false);
@@ -35,7 +36,17 @@ export default function Home() {
     window.addEventListener("hashchange", handleHashChange);
 
     const timer = window.setTimeout(() => setLoaded(true), 1700);
-    const canUseHeroParallax = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const compactQuery = window.matchMedia("(max-width: 760px)");
+    const syncCompact = () => setIsCompact(compactQuery.matches);
+    syncCompact();
+
+    if (compactQuery.addEventListener) {
+      compactQuery.addEventListener("change", syncCompact);
+    } else {
+      compactQuery.addListener(syncCompact);
+    }
+
+    const canUseHeroParallax = window.matchMedia("(hover: hover) and (pointer: fine)").matches && !compactQuery.matches;
 
     let animationFrameId: number;
     let targetX = typeof window !== "undefined" ? window.innerWidth / 2 : 0;
@@ -66,6 +77,11 @@ export default function Home() {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener("pointermove", moveCursor);
       window.removeEventListener("hashchange", handleHashChange);
+      if (compactQuery.removeEventListener) {
+        compactQuery.removeEventListener("change", syncCompact);
+      } else {
+        compactQuery.removeListener(syncCompact);
+      }
     };
   }, []);
 
@@ -316,16 +332,16 @@ export default function Home() {
                       {"Creating the".split("").map((char, index) => (
                         <motion.span
                           key={`script-${index}`}
-                          animate={{
+                          animate={!isCompact ? {
                             y: [0, -5, 0, 3, 0],
                             rotate: [0, -1.8, 0, 1.2, 0],
-                          }}
-                          transition={{
+                          } : undefined}
+                          transition={!isCompact ? {
                             duration: 4.2,
                             ease: "easeInOut",
                             repeat: Infinity,
                             delay: index * 0.08,
-                          }}
+                          } : undefined}
                           style={{ display: "inline-block" }}
                         >
                           {char === " " ? "\u00a0" : char}
@@ -341,22 +357,22 @@ export default function Home() {
                         <motion.span
                           key={`headline-${index}`}
                           className="live-char"
-                          animate={{
+                          animate={!isCompact ? {
                             y: [0, -7, 0, 4, 0],
                             scale: [1, 1.04, 1, 0.98, 1],
-                          }}
-                          transition={{
+                          } : undefined}
+                          transition={!isCompact ? {
                             duration: 4.8,
                             ease: "easeInOut",
                             repeat: Infinity,
                             delay: index * 0.07,
-                          }}
-                          whileHover={{
+                          } : undefined}
+                          whileHover={!isCompact ? {
                             y: -12,
                             scale: 1.12,
                             transition: { duration: 0.18 },
-                          }}
-                          style={{ display: "inline-block", cursor: "pointer" }}
+                          } : undefined}
+                          style={{ display: "inline-block", cursor: isCompact ? "default" : "pointer" }}
                         >
                           {char}
                         </motion.span>
@@ -395,13 +411,7 @@ export default function Home() {
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="projects-header">
-                  <h2 className="projects-title" aria-label="Selected Projects">
-                    {"Selected Projects".split("").map((char, index) => (
-                      <span key={`prj-${index}`} className="projects-title-char">
-                        {char === " " ? "\u00a0" : char}
-                      </span>
-                    ))}
-                  </h2>
+                  <h2 className="projects-title">Selected Projects</h2>
                   <p className="projects-subtitle">FEATURED CLIENT WORK & LIVE DIGITAL EXPERIENCES</p>
                 </div>
 
@@ -421,7 +431,7 @@ export default function Home() {
                   {/* Project Card 1: The Protein Drop */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -518,7 +528,7 @@ export default function Home() {
                   {/* Project Card 2: Ikehu */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -599,7 +609,7 @@ export default function Home() {
                   {/* Project Card 3: NudgeHQ (Under Construction) */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -720,7 +730,7 @@ export default function Home() {
                   {/* Project Card 4: GridSense.ai */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -801,7 +811,7 @@ export default function Home() {
                   {/* Project Card 5: CrisisGrid */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -882,7 +892,7 @@ export default function Home() {
                   {/* Project Card 6: LexFlow (Protected Portal) */}
                   <motion.div
                     className="project-card"
-                    whileHover={{ y: -8, scale: 1.015 }}
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="project-preview-window">
@@ -1034,7 +1044,7 @@ export default function Home() {
                       ease: "easeInOut",
                       repeat: Infinity,
                     }}
-                    whileHover={{ scale: 1.03, y: -18, transition: { duration: 0.25 } }}
+                    whileHover={!isCompact ? { scale: 1.03, y: -18, transition: { duration: 0.25 } } : undefined}
                   >
                     <div className="card-top">
                       <span className="service-tag">Web Design · Full Stack · AI & Automation</span>
@@ -1074,7 +1084,7 @@ export default function Home() {
                       repeat: Infinity,
                       delay: 0.6,
                     }}
-                    whileHover={{ scale: 1.03, y: -18, transition: { duration: 0.25 } }}
+                    whileHover={!isCompact ? { scale: 1.03, y: -18, transition: { duration: 0.25 } } : undefined}
                   >
                     <div className="card-top">
                       <span className="service-tag">Web Design · Freelance Portfolio</span>
@@ -1152,7 +1162,7 @@ export default function Home() {
                       ease: "easeInOut",
                       repeat: Infinity,
                     }}
-                    whileHover={{ y: -12, scale: 1.02 }}
+                    whileHover={!isCompact ? { y: -12, scale: 1.02 } : undefined}
                   >
                     <div className="pricing-card-header">
                       <span className="card-badge">Starter</span>
@@ -1194,7 +1204,7 @@ export default function Home() {
                       repeat: Infinity,
                       delay: 0.3,
                     }}
-                    whileHover={{ y: -12, scale: 1.025 }}
+                    whileHover={!isCompact ? { y: -12, scale: 1.025 } : undefined}
                   >
                     <div className="pricing-card-header">
                       <span className="card-badge popular-badge">Most Picked · Popular</span>
@@ -1236,7 +1246,7 @@ export default function Home() {
                       repeat: Infinity,
                       delay: 0.6,
                     }}
-                    whileHover={{ y: -12, scale: 1.02 }}
+                    whileHover={!isCompact ? { y: -12, scale: 1.02 } : undefined}
                   >
                     <div className="pricing-card-header">
                       <span className="card-badge">Custom</span>
