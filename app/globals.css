@@ -1635,8 +1635,7 @@ button {
 }
 
 .addons-grid {
-  display: flex;
-  flex-direction: grid;
+  display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
   width: 100%;
@@ -2661,6 +2660,57 @@ button {
     border-radius: 1rem;
     padding: 1rem;
     transform: none !important;
+  }
+
+  .addons-section {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    overflow: hidden;
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+
+  .addons-header {
+    padding-right: 1rem;
+    text-align: center;
+  }
+
+  .addons-title {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .addons-grid {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: -1rem;
+    overflow-x: auto;
+    padding: 0 1rem 0.85rem;
+    scroll-padding-inline: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .addons-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .addon-row-item {
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.36);
+    flex: 0 0 min(82vw, 20rem);
+    min-height: 9.5rem;
+    scroll-snap-align: start;
+  }
+
+  .addon-right {
+    width: 100%;
+  }
+
+  .addon-price-tag {
+    display: inline-flex;
+    justify-content: center;
+    min-width: 7rem;
   }
 
   .testimonial-quote {

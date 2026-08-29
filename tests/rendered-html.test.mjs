@@ -63,6 +63,8 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
   assert.match(css, /\.site-shell:not\(\[data-active-tab="hero"\]\)\s*\{[\s\S]*overflow:\s*visible/);
   assert.match(css, /\.site-shell\[data-active-tab="projects"\] \.projects-image/);
   assert.match(css, /\.site-shell\[data-active-tab="projects"\] \.room-projects::after/);
+  assert.match(css, /\.addons-grid\s*\{[\s\S]*overflow-x:\s*auto/);
+  assert.match(css, /\.addon-row-item\s*\{[\s\S]*scroll-snap-align:\s*start/);
 
   assert.match(canvas, /min-width: 761px/);
   assert.match(canvas, /enabled = true/);
