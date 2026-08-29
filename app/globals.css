@@ -42,6 +42,17 @@ button {
   position: relative;
 }
 
+.site-shell:not([data-active-tab="hero"]) {
+  overflow: visible;
+}
+
+.site-shell:not([data-active-tab="hero"]) .hero {
+  align-items: flex-start;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
 /* Intro Screen */
 .intro {
   align-items: center;
@@ -748,7 +759,7 @@ button {
 }
 
 .room-viewport::after {
-  animation: waterDrift 13s linear infinite;
+  animation: none;
   background:
     linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 48%, transparent 72%),
     repeating-linear-gradient(175deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 9px);
@@ -763,6 +774,14 @@ button {
   transform: translate3d(0, 0, 0);
   width: 116%;
   z-index: 1;
+}
+
+.site-shell[data-active-tab="hero"] .room-hero::after,
+.site-shell[data-active-tab="projects"] .room-projects::after,
+.site-shell[data-active-tab="review"] .room-review::after,
+.site-shell[data-active-tab="pricing"] .room-pricing::after,
+.site-shell[data-active-tab="contact"] .room-contact::after {
+  animation: waterDrift 18s linear infinite;
 }
 
 .projects-image {
@@ -877,6 +896,74 @@ button {
   filter: blur(48px);
   opacity: 0.24;
   animation: blobMove2 20s ease-in-out infinite alternate;
+}
+
+.hero-image,
+.projects-image,
+.review-image,
+.pricing-image,
+.contact-image,
+.contact-light-blob.blob-a,
+.contact-light-blob.blob-b {
+  animation: none;
+  will-change: auto;
+}
+
+.hero-image,
+.projects-image,
+.review-image,
+.pricing-image,
+.contact-image {
+  transform: scale(1.04) translate3d(0, 0, 0);
+}
+
+.site-shell[data-active-tab="hero"] .hero-image {
+  animation: heroPan 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.site-shell[data-active-tab="projects"] .projects-image {
+  animation: projectsRoomPan 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.site-shell[data-active-tab="review"] .review-image {
+  animation: reviewRoomPan 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.site-shell[data-active-tab="pricing"] .pricing-image {
+  animation: pricingRoomPan 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.site-shell[data-active-tab="contact"] .contact-image {
+  animation: contactRoomPan 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.site-shell[data-active-tab="hero"] .room-hero .contact-light-blob.blob-a,
+.site-shell[data-active-tab="projects"] .room-projects .contact-light-blob.blob-a,
+.site-shell[data-active-tab="review"] .room-review .contact-light-blob.blob-a,
+.site-shell[data-active-tab="pricing"] .room-pricing .contact-light-blob.blob-a,
+.site-shell[data-active-tab="contact"] .room-contact .contact-light-blob.blob-a {
+  animation: blobMove1 26s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.site-shell[data-active-tab="hero"] .room-hero .contact-light-blob.blob-b,
+.site-shell[data-active-tab="projects"] .room-projects .contact-light-blob.blob-b,
+.site-shell[data-active-tab="review"] .room-review .contact-light-blob.blob-b,
+.site-shell[data-active-tab="pricing"] .room-pricing .contact-light-blob.blob-b,
+.site-shell[data-active-tab="contact"] .room-contact .contact-light-blob.blob-b {
+  animation: blobMove2 30s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.site-shell:not([data-active-tab="hero"]) .visible-blob {
+  animation: none !important;
+  opacity: 0.12;
+  will-change: auto;
 }
 
 /* Atmospheric Blur & Soft Vignette Layer */
@@ -1255,7 +1342,7 @@ button {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 2;
   overflow: hidden;
 }
 
@@ -1267,7 +1354,7 @@ button {
 .bird-svg {
   width: clamp(26px, 3.8vw, 44px);
   height: clamp(18px, 2.4vw, 30px);
-  fill: rgba(165, 115, 115, 0.45);
+  fill: rgba(150, 100, 105, 0.34);
 }
 
 .bird-svg .wing {
@@ -1633,6 +1720,10 @@ button {
   margin: 0;
 }
 
+.projects-title-char {
+  display: inline-block;
+}
+
 .projects-subtitle {
   color: rgba(21, 21, 21, 0.7);
   font-size: clamp(0.75rem, 0.9vw, 0.9rem);
@@ -1675,6 +1766,7 @@ button {
   gap: 2.2rem;
   margin-top: 2.4rem;
   width: 100%;
+  contain: layout paint style;
 }
 
 .project-card {
@@ -1756,6 +1848,16 @@ button {
   height: auto;
   display: block;
   object-fit: cover;
+}
+
+.preview-img:not(:first-child) {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .preview-img {
+    display: block;
+  }
 }
 
 .preview-hover-overlay {
@@ -2153,10 +2255,12 @@ button {
   body {
     min-height: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
   }
 
   .site-shell {
-    overflow-x: hidden;
+    overflow: visible;
   }
 
   .live-bg-canvas,
@@ -2167,9 +2271,26 @@ button {
   }
 
   .hero {
+    align-items: flex-start;
+    height: auto;
     min-height: 100svh;
-    overflow-x: hidden;
+    overflow: visible;
     padding: 7.4rem 1rem 3.25rem;
+  }
+
+  .rooms-slider {
+    min-height: 100svh;
+  }
+
+  .flying-birds-layer {
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .bird-svg {
+    fill: rgba(130, 82, 86, 0.22);
+    height: 16px;
+    width: 24px;
   }
 
   .topbar {
@@ -2263,7 +2384,9 @@ button {
   }
 
   .viewports-content-container {
+    align-items: flex-start;
     max-width: 100%;
+    min-height: calc(100svh - 10rem);
     width: 100%;
   }
 
@@ -2280,15 +2403,26 @@ button {
   }
 
   .hero-copy h1 {
-    font-size: clamp(3rem, 17vw, 4.8rem);
-    line-height: 0.88;
+    font-size: clamp(2.75rem, 13.5vw, 4rem);
+    line-height: 0.9;
     max-width: 100%;
   }
 
   .script-line,
   .headline-word {
-    white-space: normal;
+    max-width: 100%;
+    white-space: nowrap;
     word-break: normal;
+  }
+
+  .script-line {
+    font-size: 0.68em;
+    line-height: 0.96;
+  }
+
+  .headline-word {
+    font-size: 0.94em;
+    line-height: 0.9;
   }
 
   .hero-actions {
@@ -2521,7 +2655,7 @@ button {
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.75rem, 16vw, 3.5rem);
+    font-size: clamp(2.35rem, 12.6vw, 3rem);
   }
 
   .projects-title,

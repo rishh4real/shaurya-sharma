@@ -105,9 +105,9 @@ export default function Home() {
   };
 
   return (
-    <main className={`site-shell ${loaded ? "is-loaded" : ""}`}>
+    <main className={`site-shell ${loaded ? "is-loaded" : ""}`} data-active-tab={activeTab}>
       {/* Live Ambient Canvas Background */}
-      <LiveBackgroundCanvas loaded={loaded} />
+      <LiveBackgroundCanvas loaded={loaded} enabled={activeTab !== "projects"} />
 
       {/* Subtle Grain Overlay */}
       <div className="grain" aria-hidden="true" />
@@ -397,22 +397,9 @@ export default function Home() {
                 <div className="projects-header">
                   <h2 className="projects-title" aria-label="Selected Projects">
                     {"Selected Projects".split("").map((char, index) => (
-                      <motion.span
-                        key={`prj-${index}`}
-                        animate={{
-                          y: [0, -8, 0, 5, 0],
-                          rotate: [0, -2.2, 0, 1.6, 0],
-                        }}
-                        transition={{
-                          duration: 4.2,
-                          ease: "easeInOut",
-                          repeat: Infinity,
-                          delay: index * 0.07,
-                        }}
-                        style={{ display: "inline-block" }}
-                      >
+                      <span key={`prj-${index}`} className="projects-title-char">
                         {char === " " ? "\u00a0" : char}
-                      </motion.span>
+                      </span>
                     ))}
                   </h2>
                   <p className="projects-subtitle">FEATURED CLIENT WORK & LIVE DIGITAL EXPERIENCES</p>
@@ -452,31 +439,49 @@ export default function Home() {
                             src="/projects/tpd-seq-1.jpg"
                             alt="The Protein Drop Hero - Protein, but make it chatkaara"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/tpd-seq-2.png"
                             alt="Two ways to make protein joyful & Better way to eat"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/tpd-seq-3.png"
                             alt="The Protein Drop Promise - Home Kitchen & Small Batch"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/tpd-seq-4.png"
                             alt="Voices of Our Customers - Verified Feedback"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/tpd-seq-5.png"
                             alt="Small-batch food cooked fresh"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/tpd-seq-6.png"
                             alt="The Protein Drop Footer & Gurgaon Contact"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>
@@ -531,21 +536,33 @@ export default function Home() {
                             src="/projects/ikehu-seq-1.png"
                             alt="Ikehu Hero - We are here"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/ikehu-seq-2.png"
                             alt="Ikehu - Why We Work & Insights not just Search"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/ikehu-seq-3.png"
                             alt="Ikehu - How We Work & Who We Work With"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/ikehu-seq-4.png"
                             alt="Ikehu Footer & Leadership Contact"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>
@@ -601,51 +618,81 @@ export default function Home() {
                             src="/projects/nudgehq-seq-1.png"
                             alt="NudgeHQ Hero - Track Real Progress. Act at the Right Time."
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-2.png"
                             alt="NudgeHQ - Live work signals without manager chasing"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-3.png"
                             alt="NudgeHQ Reports - Turn team signals into decisions"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-4.png"
                             alt="NudgeHQ Dashboard Preview - One dashboard full visibility"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-5.png"
                             alt="NudgeHQ - WhatsApp becomes front door for daily work"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-6.png"
                             alt="NudgeHQ Early Feedback - Real words from HR leaders"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-7.png"
                             alt="NudgeHQ FAQ - Frequently asked questions"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-8.png"
                             alt="NudgeHQ Pricing - Simple flat pricing for early stage teams"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-9.png"
                             alt="NudgeHQ Product Slides - What makes NudgeHQ feel exciting"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/nudgehq-seq-10.png"
                             alt="NudgeHQ Footer CTA - Stop chasing updates. Start knowing."
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>
@@ -691,21 +738,33 @@ export default function Home() {
                             src="/projects/gridsense-seq-1.png"
                             alt="GridSense.ai Hero - Turn Chaos Into Command"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/gridsense-seq-2.png"
                             alt="GridSense.ai Core Capabilities - Four AI Modules One Unified Platform"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/gridsense-seq-3.png"
                             alt="GridSense.ai Smart Queue Manager Dashboard"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/gridsense-seq-4.png"
                             alt="GridSense.ai Footer - Make Your Next Event Truly Intelligent"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>
@@ -760,21 +819,33 @@ export default function Home() {
                             src="/projects/crisisgrid-seq-1.png"
                             alt="CrisisGrid Hero - Ground truth delivered to those who act"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/crisisgrid-seq-2.png"
                             alt="CrisisGrid - How It Works AI extraction and Who is it for"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/crisisgrid-seq-3.png"
                             alt="CrisisGrid Emergency Command Center Live Map"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/crisisgrid-seq-4.png"
                             alt="CrisisGrid - Submit Field Report AI Form"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>
@@ -830,16 +901,25 @@ export default function Home() {
                             src="/projects/lexflow-seq-1.png"
                             alt="LexFlow Login Screen - AI Powered Court Judgment Intelligence"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/lexflow-seq-2.png"
                             alt="LexFlow Compliance Dashboard - Monitoring legal orders and student activity"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                           <img
                             src="/projects/lexflow-seq-3.png"
                             alt="LexFlow Admin Management - Oversee cases users and system integrity"
                             className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
                           />
                         </div>
                       </div>

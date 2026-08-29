@@ -4,12 +4,15 @@ import { useEffect, useRef } from "react";
 
 interface LiveBackgroundCanvasProps {
   loaded: boolean;
+  enabled?: boolean;
 }
 
-export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
+export function LiveBackgroundCanvas({ loaded, enabled = true }: LiveBackgroundCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -287,7 +290,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
       window.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, []);
+  }, [enabled]);
 
   return (
     <canvas
@@ -299,7 +302,7 @@ export function LiveBackgroundCanvas({ loaded }: LiveBackgroundCanvasProps) {
         pointerEvents: "none",
         zIndex: 0,
         transition: "opacity 1.2s ease-out",
-        opacity: loaded ? 1 : 0,
+        opacity: loaded && enabled ? 1 : 0,
       }}
     />
   );

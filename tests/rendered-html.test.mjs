@@ -51,14 +51,21 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
   assert.match(page, /href="#review"/);
   assert.match(page, /href="#pricing"/);
   assert.match(page, /setActiveTab\("review"\)/);
+  assert.match(page, /data-active-tab=\{activeTab\}/);
+  assert.match(page, /enabled=\{activeTab !== "projects"\}/);
+  assert.match(page, /loading="lazy"/);
   assert.doesNotMatch(page, /navVisible|console\.log|>Team</);
 
   assert.match(css, /@media \(max-width: 760px\)/);
   assert.match(css, /\.nav a\s*\{[\s\S]*display:\s*inline-flex/);
   assert.match(css, /\.preview-img:not\(:first-child\)\s*\{[\s\S]*display:\s*none/);
   assert.match(css, /\.project-card:hover \.scroll-canvas-track/);
+  assert.match(css, /\.site-shell:not\(\[data-active-tab="hero"\]\)\s*\{[\s\S]*overflow:\s*visible/);
+  assert.match(css, /\.site-shell\[data-active-tab="projects"\] \.projects-image/);
+  assert.match(css, /\.site-shell\[data-active-tab="projects"\] \.room-projects::after/);
 
   assert.match(canvas, /min-width: 761px/);
+  assert.match(canvas, /enabled = true/);
   assert.match(canvas, /devicePixelRatio \|\| 1, 1\.25/);
   assert.match(canvas, /now - lastFrame < 33/);
 });
