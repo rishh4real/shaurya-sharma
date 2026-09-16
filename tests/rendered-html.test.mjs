@@ -53,6 +53,9 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
   assert.match(page, /setActiveTab\("review"\)/);
   assert.match(page, /data-active-tab=\{activeTab\}/);
   assert.match(page, /enabled=\{activeTab !== "projects"\}/);
+  assert.match(page, /All 7/);
+  assert.match(page, /Realtywize/);
+  assert.match(page, /realtywize\.co/);
   assert.match(page, /loading="lazy"/);
   assert.doesNotMatch(page, /navVisible|console\.log|>Team</);
 

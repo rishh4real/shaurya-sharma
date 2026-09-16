@@ -7,7 +7,7 @@ Live site: https://asqaure-design.rishh4work.chatgpt.site
 ## Sections
 
 - Home: architectural hero scene, animated headline, ambient motion, and service positioning.
-- Projects: live-style project cards for shipped web, AI, and full-stack work.
+- Projects: live-style project cards for shipped web, AI, real estate, and full-stack work, including Realtywize.
 - Review: client testimonials with floating review cards.
 - Pricing: service tiers and add-on offerings.
 - Contact: email, WhatsApp, LinkedIn, and Instagram links.

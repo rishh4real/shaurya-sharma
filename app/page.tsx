@@ -417,9 +417,10 @@ export default function Home() {
 
                 {/* Filter Pills */}
                 <div className="projects-pills">
-                  <span className="prj-pill active">All 6</span>
+                  <span className="prj-pill active">All 7</span>
                   <span className="prj-pill">Full Stack</span>
                   <span className="prj-pill">AI Platform</span>
+                  <span className="prj-pill">Real Estate</span>
                   <span className="prj-pill">Govt Legal AI</span>
                   <span className="prj-pill">Hackathon Winner</span>
                   <span className="prj-pill">Rapid 5hr Build</span>
@@ -959,6 +960,103 @@ export default function Home() {
                         rel="noreferrer"
                         className="project-arrow-link"
                         aria-label="Visit LexFlow Portal"
+                      >
+                        ↘
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Project Card 7: Realtywize */}
+                  <motion.div
+                    className="project-card"
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="project-preview-window">
+                      <div className="browser-bar">
+                        <div className="dot red" />
+                        <div className="dot yellow" />
+                        <div className="dot green" />
+                        <span className="url-preview">realtywize.co</span>
+                      </div>
+
+                      {/* Live Scrolling Web Page Canvas Frame */}
+                      <div className="scroll-canvas-container">
+                        <div className="scroll-canvas-track scroll-track-6">
+                          <img
+                            src="/projects/realtywize-seq-1.jpg"
+                            alt="Realtywize homepage hero - Invest in Land Invest in Returns"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-2.jpg"
+                            alt="Realtywize about section - Your Partner for Smart Land Decisions"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-3.jpg"
+                            alt="Realtywize investment section - Land is today Growth is tomorrow"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-4.jpg"
+                            alt="Realtywize land plots section - Yamuna Expressway plots"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-5.jpg"
+                            alt="Realtywize process section - A clearer path from interest to ownership"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-6.jpg"
+                            alt="Realtywize footer section - Find the right land before the market gets louder"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="preview-hover-overlay">
+                        <a
+                          href="https://www.realtywize.co/index.html"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="visit-site-btn"
+                        >
+                          Visit Live Site ↗
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="project-card-footer">
+                      <div className="project-meta">
+                        <h3 className="project-name">Realtywize</h3>
+                        <p className="project-category">Real estate land advisory website for plot discovery</p>
+                      </div>
+                      <a
+                        href="https://www.realtywize.co/index.html"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-arrow-link"
+                        aria-label="Visit Realtywize website"
                       >
                         ↘
                       </a>
