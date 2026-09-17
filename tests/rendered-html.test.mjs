@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -41,9 +41,23 @@ test("server-renders the Shaurya Sharma portfolio shell", async () => {
   assert.doesNotMatch(html, /Your site is taking shape|Building your site|react-loading-skeleton/i);
 });
 
+test("server-renders the terms and conditions page", async () => {
+  const response = await render("/terms-and-conditions");
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+
+  const html = await response.text();
+  assert.match(html, /Freelance T&amp;C/);
+  assert.match(html, /11 September 2026/);
+  assert.match(html, /Payment &amp; Delivery/);
+  assert.match(html, /Ownership &amp; Rights/);
+  assert.match(html, /This document forms part of every invoice\/quotation/);
+});
+
 test("keeps mobile navigation and performance safeguards in source", async () => {
-  const [page, css, canvas] = await Promise.all([
+  const [page, termsPage, css, canvas] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/terms-and-conditions/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../app/components/LiveBackgroundCanvas.tsx", import.meta.url), "utf8"),
   ]);
@@ -56,10 +70,17 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
   assert.match(page, /All 7/);
   assert.match(page, /Realtywize/);
   assert.match(page, /realtywize\.co/);
+  assert.match(page, /Realtywize[\s\S]*The Protein Drop/);
+  assert.match(page, /href="\/terms-and-conditions"/);
   assert.match(page, /loading="lazy"/);
   assert.doesNotMatch(page, /navVisible|console\.log|>Team</);
 
+  assert.match(termsPage, /Payment & Delivery/);
+  assert.match(termsPage, /₹500\/round/);
+  assert.match(termsPage, /25 days/);
+
   assert.match(css, /@media \(max-width: 760px\)/);
+  assert.match(css, /\.terms-page/);
   assert.match(css, /\.nav a\s*\{[\s\S]*display:\s*inline-flex/);
   assert.match(css, /\.preview-img:not\(:first-child\)\s*\{[\s\S]*display:\s*none/);
   assert.match(css, /\.project-card:hover \.scroll-canvas-track/);

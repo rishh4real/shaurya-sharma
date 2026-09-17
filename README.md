@@ -11,6 +11,7 @@ Live site: https://asqaure-design.rishh4work.chatgpt.site
 - Review: client testimonials with floating review cards.
 - Pricing: service tiers and add-on offerings.
 - Contact: email, WhatsApp, LinkedIn, and Instagram links.
+- Terms & Conditions: freelance service terms for quoted projects.
 
 ## Motion And Performance
 

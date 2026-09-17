@@ -429,7 +429,104 @@ export default function Home() {
                 {/* Projects Display Grid */}
                 <div className="projects-grid">
                   
-                  {/* Project Card 1: The Protein Drop */}
+                  {/* Project Card 1: Realtywize */}
+                  <motion.div
+                    className="project-card"
+                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="project-preview-window">
+                      <div className="browser-bar">
+                        <div className="dot red" />
+                        <div className="dot yellow" />
+                        <div className="dot green" />
+                        <span className="url-preview">realtywize.co</span>
+                      </div>
+
+                      {/* Live Scrolling Web Page Canvas Frame */}
+                      <div className="scroll-canvas-container">
+                        <div className="scroll-canvas-track scroll-track-6">
+                          <img
+                            src="/projects/realtywize-seq-1.jpg"
+                            alt="Realtywize homepage hero - Invest in Land Invest in Returns"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-2.jpg"
+                            alt="Realtywize about section - Your Partner for Smart Land Decisions"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-3.jpg"
+                            alt="Realtywize investment section - Land is today Growth is tomorrow"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-4.jpg"
+                            alt="Realtywize land plots section - Yamuna Expressway plots"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-5.jpg"
+                            alt="Realtywize process section - A clearer path from interest to ownership"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                          <img
+                            src="/projects/realtywize-seq-6.jpg"
+                            alt="Realtywize footer section - Find the right land before the market gets louder"
+                            className="preview-img"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="low"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="preview-hover-overlay">
+                        <a
+                          href="https://www.realtywize.co/index.html"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="visit-site-btn"
+                        >
+                          Visit Live Site ↗
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="project-card-footer">
+                      <div className="project-meta">
+                        <h3 className="project-name">Realtywize</h3>
+                        <p className="project-category">Real estate land advisory website for plot discovery</p>
+                      </div>
+                      <a
+                        href="https://www.realtywize.co/index.html"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-arrow-link"
+                        aria-label="Visit Realtywize website"
+                      >
+                        ↘
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Project Card 2: The Protein Drop */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -526,7 +623,7 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 2: Ikehu */}
+                  {/* Project Card 3: Ikehu */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -607,7 +704,7 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 3: NudgeHQ (Under Construction) */}
+                  {/* Project Card 4: NudgeHQ (Under Construction) */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -728,7 +825,7 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 4: GridSense.ai */}
+                  {/* Project Card 5: GridSense.ai */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -809,7 +906,7 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 5: CrisisGrid */}
+                  {/* Project Card 6: CrisisGrid */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -890,7 +987,7 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 6: LexFlow (Protected Portal) */}
+                  {/* Project Card 7: LexFlow (Protected Portal) */}
                   <motion.div
                     className="project-card"
                     whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
@@ -966,102 +1063,6 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Project Card 7: Realtywize */}
-                  <motion.div
-                    className="project-card"
-                    whileHover={!isCompact ? { y: -8, scale: 1.015 } : undefined}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="project-preview-window">
-                      <div className="browser-bar">
-                        <div className="dot red" />
-                        <div className="dot yellow" />
-                        <div className="dot green" />
-                        <span className="url-preview">realtywize.co</span>
-                      </div>
-
-                      {/* Live Scrolling Web Page Canvas Frame */}
-                      <div className="scroll-canvas-container">
-                        <div className="scroll-canvas-track scroll-track-6">
-                          <img
-                            src="/projects/realtywize-seq-1.jpg"
-                            alt="Realtywize homepage hero - Invest in Land Invest in Returns"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <img
-                            src="/projects/realtywize-seq-2.jpg"
-                            alt="Realtywize about section - Your Partner for Smart Land Decisions"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <img
-                            src="/projects/realtywize-seq-3.jpg"
-                            alt="Realtywize investment section - Land is today Growth is tomorrow"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <img
-                            src="/projects/realtywize-seq-4.jpg"
-                            alt="Realtywize land plots section - Yamuna Expressway plots"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <img
-                            src="/projects/realtywize-seq-5.jpg"
-                            alt="Realtywize process section - A clearer path from interest to ownership"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <img
-                            src="/projects/realtywize-seq-6.jpg"
-                            alt="Realtywize footer section - Find the right land before the market gets louder"
-                            className="preview-img"
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="preview-hover-overlay">
-                        <a
-                          href="https://www.realtywize.co/index.html"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="visit-site-btn"
-                        >
-                          Visit Live Site ↗
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="project-card-footer">
-                      <div className="project-meta">
-                        <h3 className="project-name">Realtywize</h3>
-                        <p className="project-category">Real estate land advisory website for plot discovery</p>
-                      </div>
-                      <a
-                        href="https://www.realtywize.co/index.html"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-arrow-link"
-                        aria-label="Visit Realtywize website"
-                      >
-                        ↘
-                      </a>
-                    </div>
-                  </motion.div>
 
                 </div>
 
@@ -1629,6 +1630,14 @@ export default function Home() {
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                     <span>Instagram ↗</span>
+                  </motion.a>
+
+                  <motion.a
+                    href="/terms-and-conditions"
+                    className="social-pill"
+                    whileHover={{ y: -3, scale: 1.05 }}
+                  >
+                    <span>Terms &amp; Conditions ↗</span>
                   </motion.a>
                 </div>
               </motion.div>
