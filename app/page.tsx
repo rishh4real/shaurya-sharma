@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { LiveBackgroundCanvas } from "./components/LiveBackgroundCanvas";
 
@@ -277,6 +278,9 @@ export default function Home() {
             >
               Pricing
             </a>
+            <Link href="/terms-and-conditions" className="nav-terms-link">
+              Terms
+            </Link>
             <a
               href="#contact"
               onClick={(e) => {

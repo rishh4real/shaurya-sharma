@@ -49,8 +49,9 @@ test("server-renders the terms and conditions page", async () => {
   const html = await response.text();
   assert.match(html, /Freelance T&amp;C/);
   assert.match(html, /11 September 2026/);
-  assert.match(html, /Payment &amp; Delivery/);
-  assert.match(html, /Ownership &amp; Rights/);
+  assert.match(html, /Clear terms before we start building/);
+  assert.match(html, /Payment &amp; Go-Live/);
+  assert.match(html, /Ownership &amp; Portfolio/);
   assert.match(html, /This document forms part of every invoice\/quotation/);
 });
 
@@ -72,15 +73,19 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
   assert.match(page, /realtywize\.co/);
   assert.match(page, /Realtywize[\s\S]*The Protein Drop/);
   assert.match(page, /href="\/terms-and-conditions"/);
+  assert.match(page, /Terms/);
   assert.match(page, /loading="lazy"/);
   assert.doesNotMatch(page, /navVisible|console\.log|>Team</);
 
-  assert.match(termsPage, /Payment & Delivery/);
-  assert.match(termsPage, /₹500\/round/);
+  assert.match(termsPage, /Payment & Go-Live/);
+  assert.match(termsPage, /Clear terms before we start building/);
+  assert.match(termsPage, /₹500 per round/);
   assert.match(termsPage, /25 days/);
 
   assert.match(css, /@media \(max-width: 760px\)/);
   assert.match(css, /\.terms-page/);
+  assert.match(css, /\.terms-hero/);
+  assert.match(css, /\.nav-terms-link/);
   assert.match(css, /\.nav a\s*\{[\s\S]*display:\s*inline-flex/);
   assert.match(css, /\.preview-img:not\(:first-child\)\s*\{[\s\S]*display:\s*none/);
   assert.match(css, /\.project-card:hover \.scroll-canvas-track/);
