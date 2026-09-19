@@ -6,173 +6,133 @@ export const metadata: Metadata = {
   description: "Freelance web development terms and conditions for quoted projects by Shaurya Sharma.",
 };
 
-const quickTerms = [
-  { label: "Advance", value: "50%", note: "before work starts" },
-  { label: "Revisions", value: "2 rounds", note: "included in quoted price" },
-  { label: "Support", value: "25 days", note: "for bugs and fixes" },
-  { label: "Quote Validity", value: "7 days", note: "from quoted date" },
-];
-
 const termsSections = [
   {
+    number: "01",
     title: "Payment & Go-Live",
-    eyebrow: "Before work starts",
-    items: [
-      "A 50% advance is required before work begins; the remaining balance is due before go-live.",
-      "Until full payment is cleared, the site is shared through a Vercel/local preview link only.",
-      "The live domain is connected only after complete payment.",
-      "Quoted prices stay valid for 7 days.",
+    body:
+      "A 50% advance confirms the project and starts the work. The remaining balance is cleared before the final site goes live on the client domain.",
+    points: [
+      "Until full payment is complete, the site is shared through a local or Vercel preview link.",
+      "Quoted prices stay valid for 7 days from the quote date.",
     ],
   },
   {
-    title: "Timeline & Content",
-    eyebrow: "What I need from you",
-    items: [
-      "The timeline starts after the advance is received and all required content is shared.",
-      "Client is responsible for providing all text, images, logos, and brand assets.",
+    number: "02",
+    title: "Content & Assets",
+    body:
+      "Project timelines begin once the advance is received and the required text, images, logos, and brand assets are shared.",
+    points: [
       "Content should be shared within 3 days of project start.",
-      "Delays in content create equivalent delivery delays and are not counted as my delay.",
-      "If client-provided images are low quality, final output quality cannot be guaranteed.",
+      "Delays in content create matching delivery delays.",
+      "Final quality depends on the quality of client-provided images and assets.",
     ],
   },
   {
+    number: "03",
     title: "Revisions",
-    eyebrow: "Clean feedback loop",
-    items: [
-      "Every quoted project includes 2 rounds of revisions.",
+    body:
+      "Every quoted project includes 2 rounds of revisions so the final site feels sharp without turning feedback into an endless loop.",
+    points: [
       "Extra revision rounds are charged separately at ₹500 per round.",
-      "Revision requests are handled through the WhatsApp group only.",
-      "Revisions cover changes to existing content, not new sections or new features.",
+      "Revision requests are handled through the WhatsApp group.",
+      "Revisions cover existing content, not new features or new sections.",
     ],
   },
   {
+    number: "04",
     title: "Ownership & Portfolio",
-    eyebrow: "After final payment",
-    items: [
-      "Full ownership transfers to the client only after complete payment.",
-      "Shaurya can show the project in the portfolio unless the client requests otherwise.",
-      "Domain and hosting accounts should be in the client's name.",
-    ],
+    body:
+      "Full ownership of the completed work transfers to the client after complete payment. Domain and hosting accounts should stay in the client's name.",
+    points: ["Shaurya may show the project in the portfolio unless the client requests otherwise."],
   },
   {
+    number: "05",
     title: "Cancellation",
-    eyebrow: "If plans change",
-    items: [
-      "Advance is non-refundable if the client cancels after work begins.",
-      "If Shaurya cancels, the full advance is refunded.",
-      "No work is handed over until full payment is cleared.",
+    body:
+      "If the client cancels after work begins, the advance is non-refundable. If Shaurya cancels the project, the full advance is refunded.",
+    points: ["No final files, handover, or live deployment are provided until full payment is cleared."],
+  },
+  {
+    number: "06",
+    title: "Post Delivery",
+    body:
+      "Delivered work includes 25 days of free support for bugs and fixes connected to the agreed project scope.",
+    points: [
+      "New features or new sections after delivery are quoted separately.",
+      "Support is handled through WhatsApp with response within 24 hours.",
     ],
   },
   {
-    title: "Post Delivery",
-    eyebrow: "Support window",
-    items: [
-      "Delivered work includes 25 days of free support for bugs and fixes.",
-      "New features or new sections after delivery are quoted separately.",
-      "Support is handled through the WhatsApp group, with response within 24 hours.",
+    number: "07",
+    title: "Legal",
+    body:
+      "Shaurya is not responsible for third-party service downtime, including hosting, domains, payment tools, or WhatsApp API services.",
+    points: [
+      "The client is responsible for copyright of client-provided text, images, and brand material.",
+      "Disputes should be resolved mutually before legal action.",
     ],
   },
 ];
 
 export default function TermsAndConditions() {
   return (
-    <main className="terms-page">
-      <nav className="terms-site-nav" aria-label="Terms page navigation">
-        <Link href="/" className="terms-brand">
+    <main className="terms-room">
+      <div className="terms-room-bg" aria-hidden="true" />
+      <div className="terms-room-light" aria-hidden="true" />
+      <div className="terms-room-grain" aria-hidden="true" />
+
+      <nav className="terms-room-nav" aria-label="Terms page navigation">
+        <Link href="/" className="terms-room-brand">
           shaurya <em>sharma</em>
         </Link>
-        <div className="terms-nav-links">
+        <div className="terms-room-links">
           <Link href="/#projects">Projects</Link>
+          <Link href="/#review">Review</Link>
           <Link href="/#pricing">Pricing</Link>
           <Link href="/#contact">Contact</Link>
         </div>
       </nav>
 
-      <section className="terms-hero" aria-labelledby="terms-page-title">
-        <div className="terms-hero-copy">
-          <p className="terms-kicker">Freelance Web Development Terms</p>
-          <h1 id="terms-page-title">Clear terms before we start building.</h1>
-          <p>
-            These terms keep every quoted website project simple: what is included, when payment happens,
-            how revisions work, and what happens after delivery.
-          </p>
+      <section className="terms-room-hero" aria-labelledby="terms-page-title">
+        <p className="terms-room-kicker">Freelance T&amp;C / Updated 11 September 2026</p>
+        <h1 id="terms-page-title">Terms that keep the build clear.</h1>
+        <p>
+          Simple working terms for every quoted website project: payment, content, revisions,
+          handover, support, and the boundaries that keep the process clean.
+        </p>
+        <div className="terms-room-meta" aria-label="Document details">
+          <span>Shaurya Sharma</span>
+          <span>Web Designer &amp; AI Automation Specialist</span>
+          <span>Applies to all quoted projects</span>
         </div>
-        <aside className="terms-document-panel" aria-label="Document details">
-          <div>
-            <span>Document</span>
-            <strong>Freelance T&amp;C</strong>
-          </div>
-          <div>
-            <span>Last updated</span>
-            <strong>11 September 2026</strong>
-          </div>
-          <div>
-            <span>Validity</span>
-            <strong>Applies to all quoted projects</strong>
-          </div>
-          <div>
-            <span>From</span>
-            <strong>Shaurya Sharma</strong>
-            <small>Web Designer &amp; AI Automation Specialist</small>
-          </div>
-        </aside>
       </section>
 
-      <section className="terms-quick-grid" aria-label="Key project terms">
-        {quickTerms.map((term) => (
-          <article key={term.label} className="terms-quick-card">
-            <span>{term.label}</span>
-            <strong>{term.value}</strong>
-            <p>{term.note}</p>
+      <section className="terms-writing" aria-label="Terms and conditions">
+        {termsSections.map((section) => (
+          <article className="terms-writing-block" key={section.title}>
+            <span className="terms-writing-number">{section.number}</span>
+            <div>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+              <ul>
+                {section.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
           </article>
         ))}
       </section>
 
-      <section className="terms-content-section" aria-label="Detailed terms">
-        <div className="terms-section-heading">
-          <p>Project Rules</p>
-          <h2>Everything a client should know upfront.</h2>
-        </div>
-
-        <div className="terms-grid">
-          {termsSections.map((section) => (
-            <article className="terms-card" key={section.title}>
-              <span>{section.eyebrow}</span>
-              <h3>{section.title}</h3>
-              <ul>
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="terms-legal-band" aria-labelledby="terms-legal-title">
-        <div>
-          <p>Legal</p>
-          <h2 id="terms-legal-title">A few final boundaries.</h2>
-        </div>
-        <ul>
-          <li>Shaurya is not responsible for third-party service downtime, including hosting, domain, or WhatsApp API issues.</li>
-          <li>Client is responsible for copyright of client-provided content, including text and images.</li>
-          <li>Disputes should be resolved mutually before legal action.</li>
-        </ul>
-      </section>
-
-      <footer className="terms-footer">
-        <div>
-          <strong>Shaurya Sharma</strong>
-          <span>Web Designer &amp; AI Automation Specialist</span>
-        </div>
+      <footer className="terms-room-footer">
+        <p>This document forms part of every invoice/quotation issued by Shaurya Sharma unless stated otherwise.</p>
         <div>
           <a href="mailto:rishh4work@gmail.com">rishh4work@gmail.com</a>
           <a href="https://wa.me/917018293100" target="_blank" rel="noreferrer">
             +91 7018293100
           </a>
         </div>
-        <small>This document forms part of every invoice/quotation issued by Shaurya Sharma unless stated otherwise.</small>
       </footer>
     </main>
   );

@@ -1498,6 +1498,283 @@ button {
   text-align: center;
 }
 
+.terms-room {
+  background: #f4d8d4;
+  color: #171717;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: clamp(1rem, 2.6vw, 2rem);
+  position: relative;
+}
+
+.terms-room-bg,
+.terms-room-light,
+.terms-room-grain {
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+}
+
+.terms-room-bg {
+  background-image:
+    linear-gradient(90deg, rgba(255, 245, 243, 0.08), rgba(255, 255, 255, 0.28) 48%, rgba(237, 184, 172, 0.12)),
+    url("/asqaure-hero.png");
+  background-position: 48% center;
+  background-size: cover;
+  filter: saturate(0.92) brightness(1.06);
+  transform: scale(1.04);
+  z-index: 0;
+}
+
+.terms-room-bg::after {
+  animation: water-drift 14s ease-in-out infinite alternate;
+  background:
+    linear-gradient(180deg, transparent 0 60%, rgba(255, 255, 255, 0.28) 72%, rgba(200, 218, 255, 0.2) 100%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 10px);
+  bottom: -9vh;
+  content: "";
+  height: 42vh;
+  left: -8vw;
+  opacity: 0.46;
+  position: absolute;
+  right: -8vw;
+  transform: skewY(-1.5deg);
+}
+
+.terms-room-light {
+  animation: terms-light-sweep 11s ease-in-out infinite alternate;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.42), transparent 19rem),
+    linear-gradient(106deg, transparent 0 42%, rgba(255, 255, 255, 0.42) 48%, transparent 57% 100%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.terms-room-grain {
+  background-image:
+    radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1px),
+    radial-gradient(circle at 74% 58%, rgba(37, 37, 37, 0.16) 0 1px, transparent 1px);
+  background-size: 3px 3px, 4px 4px;
+  mix-blend-mode: overlay;
+  opacity: 0.16;
+  z-index: 2;
+}
+
+.terms-room > :not(.terms-room-bg):not(.terms-room-light):not(.terms-room-grain) {
+  position: relative;
+  z-index: 3;
+}
+
+.terms-room-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 118rem;
+  padding: clamp(0.45rem, 1.2vw, 0.9rem) 0;
+}
+
+.terms-room-brand {
+  color: #171717;
+  font-size: clamp(1.65rem, 3vw, 2.65rem);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.terms-room-brand em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
+.terms-room-links {
+  align-items: center;
+  display: flex;
+  gap: clamp(0.8rem, 2vw, 2rem);
+}
+
+.terms-room-links a {
+  color: #171717;
+  font-size: clamp(0.95rem, 1.35vw, 1.35rem);
+  line-height: 1;
+  text-decoration: none;
+}
+
+.terms-room-links a:last-child {
+  border: 1px solid rgba(23, 23, 23, 0.24);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+}
+
+.terms-room-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: min(82rem, 94vw);
+  min-height: clamp(34rem, 68vh, 48rem);
+  padding: clamp(5rem, 9vh, 8rem) 0 clamp(3rem, 8vh, 6rem);
+  text-align: center;
+}
+
+.terms-room-kicker {
+  color: rgba(23, 23, 23, 0.72);
+  font-size: clamp(0.82rem, 1.2vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin: 0 0 1.1rem;
+  text-transform: uppercase;
+}
+
+.terms-room-hero h1 {
+  color: #171717;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4.2rem, 12.5vw, 12rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  margin: 0 auto;
+  max-width: 12ch;
+  text-shadow: 0 18px 80px rgba(255, 255, 255, 0.52);
+}
+
+.terms-room-hero > p:not(.terms-room-kicker) {
+  color: rgba(23, 23, 23, 0.74);
+  font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+  line-height: 1.55;
+  margin: 1.5rem auto 0;
+  max-width: 48rem;
+}
+
+.terms-room-meta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.2rem;
+  justify-content: center;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.terms-room-meta span {
+  backdrop-filter: blur(13px);
+  background: rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  color: rgba(23, 23, 23, 0.78);
+  font-size: clamp(0.82rem, 1vw, 0.96rem);
+  padding: 0.6rem 0.95rem;
+}
+
+.terms-writing {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 1.2rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+  max-width: min(74rem, 94vw);
+  overflow: hidden;
+}
+
+.terms-writing-block {
+  border-bottom: 1px solid rgba(23, 23, 23, 0.12);
+  display: grid;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  grid-template-columns: 5rem minmax(0, 1fr);
+  padding: clamp(1.25rem, 3vw, 2.4rem);
+}
+
+.terms-writing-block:last-child {
+  border-bottom: 0;
+}
+
+.terms-writing-number {
+  color: rgba(23, 23, 23, 0.42);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-style: italic;
+  line-height: 0.9;
+}
+
+.terms-writing-block h2 {
+  color: #171717;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  margin: 0;
+}
+
+.terms-writing-block p,
+.terms-writing-block li {
+  color: rgba(23, 23, 23, 0.78);
+  font-size: clamp(1rem, 1.28vw, 1.18rem);
+  line-height: 1.55;
+}
+
+.terms-writing-block p {
+  margin: 0.85rem 0 0;
+  max-width: 58rem;
+}
+
+.terms-writing-block ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.terms-room-footer {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: min(74rem, 94vw);
+  padding: 0 0 1rem;
+}
+
+.terms-room-footer p,
+.terms-room-footer a {
+  color: rgba(23, 23, 23, 0.7);
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.45;
+  margin: 0;
+  text-decoration: none;
+}
+
+.terms-room-footer div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  justify-content: flex-end;
+}
+
+@keyframes terms-light-sweep {
+  from {
+    transform: translateX(-7vw) translateY(-1vh);
+  }
+
+  to {
+    transform: translateX(8vw) translateY(2vh);
+  }
+}
+
+@keyframes water-drift {
+  from {
+    background-position: 0 0, 0 0;
+    transform: translateX(-1.5vw) skewY(-1.5deg);
+  }
+
+  to {
+    background-position: 0 0, 0 22px;
+    transform: translateX(1.5vw) skewY(-1.5deg);
+  }
+}
+
 /* Reviews Section & Floating Bathtub Cards */
 .reviews-copy {
   align-items: center;
@@ -3020,6 +3297,115 @@ button {
   .terms-footer small {
     justify-self: start;
     text-align: left;
+  }
+
+  .terms-room {
+    padding: 0.9rem;
+  }
+
+  .terms-room-bg {
+    background-position: 43% center;
+    transform: scale(1.08);
+  }
+
+  .terms-room-bg::after {
+    height: 34vh;
+    opacity: 0.35;
+  }
+
+  .terms-room-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: 100%;
+  }
+
+  .terms-room-brand {
+    font-size: clamp(1.65rem, 10vw, 2.5rem);
+  }
+
+  .terms-room-links {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0 0 0.35rem;
+    scrollbar-width: none;
+  }
+
+  .terms-room-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .terms-room-links a {
+    flex: 0 0 auto;
+    font-size: 1rem;
+  }
+
+  .terms-room-hero {
+    max-width: 100%;
+    min-height: auto;
+    padding: 5rem 0 3.2rem;
+    text-align: left;
+  }
+
+  .terms-room-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+  }
+
+  .terms-room-hero h1 {
+    font-size: clamp(3.8rem, 21vw, 5.8rem);
+    margin: 0;
+    max-width: 8ch;
+  }
+
+  .terms-room-hero > p:not(.terms-room-kicker) {
+    font-size: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 21rem;
+  }
+
+  .terms-room-meta {
+    justify-content: flex-start;
+  }
+
+  .terms-room-meta span {
+    font-size: 0.78rem;
+    padding: 0.52rem 0.72rem;
+  }
+
+  .terms-writing {
+    border-radius: 1rem;
+    max-width: 100%;
+  }
+
+  .terms-writing-block {
+    gap: 0.85rem;
+    grid-template-columns: 1fr;
+    padding: 1.15rem;
+  }
+
+  .terms-writing-number {
+    font-size: 2rem;
+  }
+
+  .terms-writing-block h2 {
+    font-size: clamp(2.15rem, 13vw, 3.3rem);
+  }
+
+  .terms-writing-block p,
+  .terms-writing-block li {
+    font-size: 0.98rem;
+  }
+
+  .terms-room-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .terms-room-footer div {
+    justify-content: flex-start;
   }
 
   .projects-milestone-banner {
