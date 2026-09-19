@@ -90,6 +90,9 @@ export default function TermsAndConditions() {
           <Link href="/#projects">Projects</Link>
           <Link href="/#review">Review</Link>
           <Link href="/#pricing">Pricing</Link>
+          <Link href="/terms-and-conditions" aria-current="page">
+            Terms
+          </Link>
           <Link href="/#contact">Contact</Link>
         </div>
       </nav>

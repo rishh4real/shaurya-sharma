@@ -79,6 +79,7 @@ test("keeps mobile navigation and performance safeguards in source", async () =>
 
   assert.match(termsPage, /Payment & Go-Live/);
   assert.match(termsPage, /Terms that keep the build clear/);
+  assert.match(termsPage, /aria-current="page"/);
   assert.match(termsPage, /₹500 per round/);
   assert.match(termsPage, /25 days/);
 
